@@ -1,4 +1,6 @@
-const API_URL = "http://127.0.0.1:5000/translate";
+// API endpoint can be overridden by defining window.API_URL before this script is loaded.
+// Default: local Flask dev server.
+const API_URL = window.API_URL || "http://127.0.0.1:5000/translate";
 const FORM_ID = "smarttranslate-history";
 
 const textInput = document.getElementById("textInput");
