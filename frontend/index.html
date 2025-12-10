@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartTranslate</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>SmartTranslate</h1>
+      <p>AI-powered translator using MarianMT</p>
+    </header>
+
+    <main>
+      <section class="translator-card">
+        <div class="controls">
+          <label>
+            Source Language
+            <select id="sourceLang">
+              <option value="id">Indonesian</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+
+          <button id="swapBtn" aria-label="Swap languages">&harr;</button>
+
+          <label>
+            Target Language
+            <select id="targetLang">
+              <option value="en">English</option>
+              <option value="id">Indonesian</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="input-label" for="textInput">Enter text to translate</label>
+        <div class="input-wrapper">
+          <textarea
+            id="textInput"
+            rows="5"
+            placeholder="Ketikkan teks di sini..."
+          ></textarea>
+          <div class="input-actions">
+            <button id="speakInputBtn" aria-label="Speak input text" title="Play input text" disabled>
+              🔊
+            </button>
+            <button id="micBtn" aria-label="Record voice" title="Record voice to text">
+              🎤
+            </button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="translateBtn">Translate</button>
+          <span id="status" role="status"></span>
+        </div>
+
+        <div class="result-wrapper">
+          <h2>Translation Result</h2>
+          <div class="result-row">
+            <p id="resultText"></p>
+            <div class="result-actions">
+              <button id="copyBtn" aria-label="Copy translation" title="Copy to clipboard" disabled>
+                📋
+              </button>
+              <button id="speakBtn" aria-label="Play translation" title="Play translation" disabled>
+                🔊
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="history-card">
+        <div class="history-header">
+          <h2>Translation History</h2>
+          <button id="clearHistoryBtn">Clear History</button>
+        </div>
+        <ul id="historyList"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 SmartTranslate</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
