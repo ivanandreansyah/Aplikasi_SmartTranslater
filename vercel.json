@@ -1,13 +1,21 @@
 {
   "version": 2,
-  "name": "smarttranslate-frontend",
+  "name": "smarttranslate",
   "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    },
     {
       "src": "frontend/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/app.py"
+    },
     {
       "src": "/(.*)",
       "dest": "/frontend/$1"
