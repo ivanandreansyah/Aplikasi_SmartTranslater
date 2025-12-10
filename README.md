@@ -95,28 +95,35 @@ git push -u origin main
 ```
 
 ## Deploy Cepat
-### Opsi A: Backend di Render, Frontend di GitHub Pages
-- Pastikan `requirements.txt` sudah ada (sudah disertakan).
+
+### Opsi A: Backend di Railway (Dockerfile), Frontend di GitHub Pages
+- Pastikan `Dockerfile` dan `requirements.txt` sudah ada (sudah disertakan).
+- Railway:
+  - Deploy from GitHub → pilih repo.
+  - Railway akan otomatis detect Dockerfile.
+  - Build & deploy otomatis; tunggu hingga selesai (pertama kali download model bisa 5-10 menit).
+  - Railway akan memberikan URL publik (mis. `https://smarttranslate-production.up.railway.app`).
+- GitHub Pages:
+  - Aktifkan Pages dari Settings → Pages → sumber `main` ke folder `/frontend`.
+  - Setelah backend live, set `API_URL` ke URL backend Railway.  
+    - Tambahkan sebelum `<script src="script.js">` di `index.html`:
+      ```html
+      <script>
+        window.API_URL = "https://your-railway-url.up.railway.app/translate";
+      </script>
+      ```
+
+### Opsi B: Backend di Render, Frontend di GitHub Pages
 - Render (Web Service):
   - Build: `pip install -r requirements.txt`
   - Start: `python backend/app.py`
   - Gunakan Python 3.9+; biarkan `PORT` dari environment Render.
   - CORS sudah diaktifkan untuk `/translate`.
-- GitHub Pages:
-  - Aktifkan Pages dari Settings → Pages → sumber `main` ke folder `/frontend`.
-  - Setelah backend live, set `API_URL` ke URL backend Render (mis. `https://your-service.onrender.com/translate`).  
-    - Opsi: tambahkan sebelum `<script src="script.js">` di `index.html`:
-      ```html
-      <script>
-        window.API_URL = "https://your-service.onrender.com/translate";
-      </script>
-      ```
-    - Atau ganti langsung konstanta default di `frontend/script.js`.
+- GitHub Pages: sama seperti Opsi A.
 
-### Opsi B: Backend + Frontend di satu VPS/Server
+### Opsi C: Backend + Frontend di satu VPS/Server
 - Jalankan backend dengan `gunicorn` atau `waitress`, reverse proxy dengan Nginx ke port 5000.
 - Sajikan folder `frontend` sebagai static site; set `API_URL` ke domain/backend Anda.
-
 ## Lisensi
 MIT (atur sesuai kebutuhan Anda).
 
