@@ -27,7 +27,6 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
 
 # Copy only backend files (reduce image size)
 COPY backend/ ./backend/
-COPY .gitignore ./
 
 # Create cache directory
 RUN mkdir -p /app/.cache/huggingface
